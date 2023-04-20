@@ -9,7 +9,7 @@ const userSchema = mongoose.Schema({
     bannerColor: { type: String, default: "blue" },
     numEventsAttended: { type: Number, default: 0 },
     numEventsHosted: { type: Number, default: 0 },
-    isCreator: Boolean,
+    isCreator: { type: Boolean, default: false },
     isAdmin: { type: Boolean, default: false },
 }, {collection: 'users'});
 export default userSchema

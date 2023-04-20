@@ -3,8 +3,9 @@ import * as usersDao from "./users-dao.js";
 
 const AuthController = (app) => {
     const register = async (req, res) => {
-        const username = req.body.username;
-        const password = req.body.password;
+        const { username, password, userNew } = req.body;
+        console.log("In register server side")
+        console.log(userNew)
         const user = await usersDao
             .findUserByUsername(username);
         if (user) {
@@ -12,7 +13,7 @@ const AuthController = (app) => {
             return;
         }
         const newUser = await usersDao
-            .createUser(req.body);
+            .createUser(userNew);
         req.session["currentUser"] = newUser;
         res.json(newUser);
     };
@@ -44,7 +45,7 @@ const AuthController = (app) => {
 
 
     app.post("/users/register", register);
-    app.post("/api/users/login",    login);
+    app.post("/users/login",    login);
     app.post("/api/users/profile",  profile);
     app.post("/api/users/logout",   logout);
     app.put ("/api/users",          update);

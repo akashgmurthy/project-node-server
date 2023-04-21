@@ -43,13 +43,20 @@ const AuthController = (app) => {
         req.session.destroy();
         res.sendStatus(200);
     };
-    const update   = async (req, res) => { };
+    const update   = async (req, res) => {
+        const uid = req.params.uid;
+        const updates = req.body;
+        const status = await usersDao.updateUser(uid, updates)
+        res.json(status);
+
+
+     };
 
 
     app.post("/users/register", register);
     app.post("/users/login",    login);
     app.post("/users/profile",  profile);
-    app.post("/api/users/logout",   logout);
-    app.put ("/api/users",          update);
+    app.post("/users/logout",   logout);
+    app.put ("/users/:uid",    update);
 };
 export default AuthController;

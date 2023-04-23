@@ -10,7 +10,6 @@ const createUser = async (req, res) => {
 
 const findUsers = async (req, res) => {
     const users = await usersDao.findUsers();
-    console.log(users)
     res.json(users);
 }
 
@@ -34,9 +33,9 @@ const deleteUser = async (req, res) => {
 }
 
 export default (app) => {
-    app.post('/api/users', createUser);
-    app.get('/api/users', findUsers);
-    app.get('/api/users/:uid', findUser);
-    app.put('/api/users/:uid', updateUser);
-    app.delete('/api/users/:uid', deleteUser);
+    app.post('/users', createUser);
+    app.get('/users', findUsers);
+    app.get('/users/:uid', findUser);
+    app.put('/users/:uid', updateUser);
+    app.delete('/users/:uid', deleteUser);
 }

@@ -47,6 +47,10 @@ const AuthController = (app) => {
         const uid = req.params.uid;
         const updates = req.body;
         const status = await usersDao.updateUser(uid, updates)
+        if (status.nModified === 1) {  // check if the user was updated successfully
+            // update the session object with the updated user
+            req.session["currentUser"] = { ...req.session["currentUser"], ...updates };
+        }
         res.json(status);
 
 

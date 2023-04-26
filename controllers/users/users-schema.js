@@ -11,5 +11,6 @@ const userSchema = mongoose.Schema({
     numEventsHosted: { type: Number, default: 0 },
     isCreator: { type: Boolean, default: false },
     isAdmin: { type: Boolean, default: false },
+    eventsrsvpd: { type: [{type: String}], default: ['sampleid'] },
 }, {collection: 'users'});
 export default userSchema

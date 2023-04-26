@@ -10,8 +10,6 @@ export const deleteUser = (uid) =>
 export const updateUser = (uid, user) =>
     usersModel.updateOne({_id: uid}, {$set: user})
 export const findUserByUsername = (username) =>
-    usersModel.findOne({ userName: username });
+    usersModel.findOne({ username: username });
 export const findUserByCredentials = (username, password) =>
     usersModel.findOne({ username, password });
-   
-   
